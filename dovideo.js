@@ -143,7 +143,7 @@ function load_prev_timestamp(){
   } else {
     video.currentTime = 0;
   }
-  video.currentTime = vid_data[current_video].timestamps[current_stamp]
+  video.currentTime = vid_data[current_video].timestamps[current_stamp];
 }
 
 function play_to_next_timestamp(){
@@ -179,6 +179,7 @@ function logKey(e) {
       break;
     case "ArrowLeft":
       load_prev_timestamp();
+      break;
     case "Space":
     case "Enter":
       playPause();
