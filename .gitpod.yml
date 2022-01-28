@@ -6,7 +6,7 @@ tasks:
       sudo apt-get install ffmpeg
       pip3 install --upgrade pip
       pip3 install manim
-    command: echo 'start script'
+  - command: echo 'start script'
 
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
 ports:
