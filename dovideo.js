@@ -4,6 +4,23 @@ const toc = document.getElementById("toc-list");
 
 const vid_data = [
   {
+    "title": "Reflections of Linear Functions",
+    "timestamps": [
+      0,
+      2.0,
+      4.9999999999999964,
+      10.999999999999975,
+      11.999999999999972,
+      19.000000000000107,
+      20.000000000000156,
+      27.000000000000504,
+      28.000000000000554,
+      29.000000000000604
+    ],
+    "filename": "Linear.mp4",
+    "path": "media/videos/linear/720p30/"
+  },
+  {
     "title": "Allgemeines Binom",
     "timestamps": [
       3.5,
