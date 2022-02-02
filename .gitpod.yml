@@ -3,7 +3,7 @@ tasks:
   - init: |
       echo 'init script'
       sudo apt-get update && sudo apt-get -y upgrade
-      sudo apt-get -y install ffmpeg texlive-full
+      sudo apt-get -y install ffmpeg texlive-latex-extra
       pip3 install --upgrade pip
       pip3 install manim
 #  - command: echo 'start script'
