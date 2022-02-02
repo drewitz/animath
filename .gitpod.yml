@@ -5,7 +5,7 @@ tasks:
       sudo apt-get update && sudo apt-get -y upgrade
       sudo apt-get -y install ffmpeg texlive-latex-extra python3-dev librust-pango-dev
       pip3 install --upgrade pip
-      pip3 install manim
+      pip3 install -r requirements.txt
 #  - command: echo 'start script'
 
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
