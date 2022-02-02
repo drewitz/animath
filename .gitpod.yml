@@ -3,7 +3,7 @@ tasks:
   - init: |
       echo 'init script'
       sudo apt-get update && sudo apt-get -y upgrade
-      sudo apt-get -y install ffmpeg texlive-latex-extra python3-dev librust-pango-dev
+      sudo apt-get -y install ffmpeg texlive-latex-extra texlive-fonts-extra python3-dev librust-pango-dev
       pip3 install --upgrade pip
       pip3 install -r requirements.txt
 #  - command: echo 'start script'
