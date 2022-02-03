@@ -18,7 +18,7 @@ const vid_data = [
       29.000000000000604
     ],
     "filename": "Linear.mp4",
-    "path": "media/videos/linear/720p30/"
+    "path": "videos/"
   },
   {
     "title": "Potenzfunktionen",
@@ -39,7 +39,7 @@ const vid_data = [
       13.0
     ],
     "filename": "Potenz.mp4",
-    "path": "media/videos/monome/720p30/"
+    "path": "videos/"
   },
   {
     "title": "Allgemeines Binom",
@@ -52,7 +52,7 @@ const vid_data = [
       8.5
     ],
     "filename": "Allgemein.mp4",
-    "path": "media/videos/binom/720p30/"
+    "path": "videos/"
   },
   {
     "title": "Zahlenmengen",
@@ -63,7 +63,7 @@ const vid_data = [
       26.961653797587253
     ],
     "filename": "Numbersets.mp4",
-    "path": "media/videos/nzqrc/720p30/"
+    "path": "videos/"
   },
   {
     "title": "Third Binomial Formula",
@@ -79,7 +79,7 @@ const vid_data = [
       17.0
     ],
     "filename": "BinomDrei.mp4",
-    "path": "media/videos/binom/720p30/"
+    "path": "videos/"
   },
   {
     "title": "Binomal Formula",
@@ -92,7 +92,7 @@ const vid_data = [
       12.0
     ],
     "filename": "BinomEins.mp4",
-    "path": "media/videos/binom/720p30/"
+    "path": "videos/"
   },
   {
     "title": "Second Binomial Formula",
@@ -107,7 +107,7 @@ const vid_data = [
       22.0
     ],
     "filename": "BinomZwei.mp4",
-    "path": "media/videos/binom/720p30/"
+    "path": "videos/"
   },
   {
     "title": "Seerosenteich",
@@ -121,7 +121,7 @@ const vid_data = [
       7.0
     ],
     "filename": "Teich.mp4",
-    "path": "media/videos/exp/720p30/"
+    "path": "videos/"
   },
   {
     "title": "Newton method",
@@ -133,7 +133,7 @@ const vid_data = [
       8.0
     ],
     "filename": "Newton.mp4",
-    "path": "media/videos/newton/720p30/"
+    "path": "videos/"
   }
 ];
 var current_stamp = 0;
