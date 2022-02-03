@@ -8,7 +8,7 @@ class Linear(Scene):
         "title": "Reflections of Linear Functions",
         "timestamps": [0],
         "filename": "Linear.mp4",
-        "path": "media/videos/linear/720p30/"
+        "path": "videos/"
     }
     a = 0.4
     b = -1.5

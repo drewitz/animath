@@ -11,7 +11,7 @@ class Teich(Scene):
         "title": "Seerosenteich",
         "timestamps": [],
         "filename": "Teich.mp4",
-        "path": "media/videos/exp/720p30/"
+        "path": "videos/"
     }
 
     def draw_logo(self):

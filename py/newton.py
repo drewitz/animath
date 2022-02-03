@@ -7,7 +7,7 @@ class Newton(Scene):
         "title": "Animation of the Newton method",
         "timestamps": [0],
         "filename": "Newton.mp4",
-        "path": "media/videos/newton/720p30/"
+        "path": "videos/"
     }
     def draw_logo(self):
         self.add(SVGMobject("stz-white.svg").scale_to_fit_width(0.3).to_corner(corner=RIGHT + DOWN))

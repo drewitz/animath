@@ -24,7 +24,7 @@ class Numbersets(Scene):
         "title": "Zahlenmengen",
         "timestamps": [],
         "filename": "Numbersets.mp4",
-        "path": "media/videos/nzqrc/720p30/"
+        "path": "videos/"
     }
     def draw_logo(self):
         self.add(SVGMobject("stz-white.svg").scale_to_fit_width(0.3).to_corner(corner=RIGHT + DOWN))

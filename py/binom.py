@@ -22,7 +22,7 @@ class Allgemein(Scene):
         "title": "Allgemeines Binom",
         "timestamps": [],
         "filename": "Allgemein.mp4",
-        "path": "media/videos/binom/720p30/"
+        "path": "videos/"
     }
 
     def draw_logo(self):
@@ -147,7 +147,7 @@ class BinomEins(Scene):
         "title": "Animation of the binomal formula",
         "timestamps": [],
         "filename": "BinomEins.mp4",
-        "path": "media/videos/binom/720p30/"
+        "path": "videos/"
     }
 
     def draw_logo(self):
@@ -307,7 +307,7 @@ class BinomZwei(Scene):
         "title": "Second Binomial Formula",
         "timestamps": [],
         "filename": "BinomZwei.mp4",
-        "path": "media/videos/binom/720p30/"
+        "path": "videos/"
     }
 
     def draw_logo(self):
@@ -489,7 +489,7 @@ class BinomDrei(Scene):
         "title": "Third Binomial Formula",
         "timestamps": [],
         "filename": "BinomDrei.mp4",
-        "path": "media/videos/binom/720p30/"
+        "path": "videos/"
     }
 
     def draw_logo(self):

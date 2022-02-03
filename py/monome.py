@@ -7,7 +7,7 @@ class Potenz(Scene):
         "title": "Potenzfunktionen",
         "timestamps": [0],
         "filename": "Potenz.mp4",
-        "path": "media/videos/monome/720p30/"
+        "path": "videos/"
     }
     def draw_logo(self):
         self.add(SVGMobject("stz-white.svg").scale_to_fit_width(0.3).to_corner(corner=RIGHT + DOWN))
