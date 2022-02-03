@@ -5,7 +5,7 @@ from modules.data_write import write_data
 class Newton(Scene):
     """drawing an animation of the Newton method"""
     meta_data = {
-        "title": "Animation of the Newton method",
+        "title": "Newton method",
         "timestamps": [0],
         "filename": "Newton.mp4",
         "path": "videos/"

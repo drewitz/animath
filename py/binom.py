@@ -145,7 +145,7 @@ class Allgemein(Scene):
 # SCENE
 class BinomEins(Scene):
     meta_data = {
-        "title": "Animation of the binomal formula",
+        "title": "First Binomal Formula",
         "timestamps": [],
         "filename": "BinomEins.mp4",
         "path": "videos/"
