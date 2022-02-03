@@ -1,5 +1,6 @@
 from manim import *
-import json
+
+from modules.data_write import write_data
 
 class Potenz(Scene):
     """drawing an animation of the Newton method"""
@@ -39,5 +40,4 @@ class Potenz(Scene):
                 self.play(FadeIn(graph), Transform(text, newtext))
             self.add_timestamp()
 
-        with open("data.json", "a") as f:
-            f.write(json.dumps(self.meta_data, indent=2))
+        write_data(self.meta_data)

@@ -1,5 +1,6 @@
 from manim import *
-import json
+
+from modules.data_write import write_data
 
 class Newton(Scene):
     """drawing an animation of the Newton method"""
@@ -59,5 +60,4 @@ class Newton(Scene):
             x0 = self.new_x()
             self.xs.append(x0)
         
-        with open("data.json", "a") as f:
-            f.write(json.dumps(self.meta_data, indent=2))
+        write_data(self.meta_data)

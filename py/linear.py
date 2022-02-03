@@ -1,19 +1,7 @@
 from manim import *
-import json
 import string
 
-def write_data(meta):
-    """
-    write the meta_data and add it to the file in an appropriate way
-    """
-    file = "data.json"
-    the_data = []
-    if isfile(file):
-        with open(file, "r") as f:
-            the_data = json.load(f.read())
-    the_data.append(meta)
-    with open(file, "a") as f:
-        f.write(json.dumps(the_data, indent=2))
+from modules.data_write import write_data
 
 
 class Linear(Scene):
@@ -133,4 +121,4 @@ class Linear(Scene):
             self.play(FadeOut(refl))
         self.add_timestamp()
 
-        write_data(meta_data)
+        write_data(self.meta_data)

@@ -1,5 +1,6 @@
 from manim import *
-import json
+
+from modules.data_write import write_data
 
 # PARAMETERS
 
@@ -138,8 +139,8 @@ class Allgemein(Scene):
                 Transform(tbd, textbd)
                 )
         self.add_timestamp()
-        with open("data.json", "a") as f:
-            f.write(json.dumps(self.meta_data, indent=2))
+
+        write_data(self.meta_data)
 
 # SCENE
 class BinomEins(Scene):
@@ -298,8 +299,7 @@ class BinomEins(Scene):
                 )
         self.add_timestamp()
 
-        with open("data.json", "a") as f:
-            f.write(json.dumps(self.meta_data, indent=2))
+        write_data(self.meta_data)
 
 
 class BinomZwei(Scene):
@@ -480,9 +480,9 @@ class BinomZwei(Scene):
                 Transform(tba, MathTex("2\cdot ab").shift(globalshift))
                 )
         self.add_timestamp()
-        with open("data.json", "a") as f:
-            f.write(json.dumps(self.meta_data, indent=2))
 
+        write_data(self.meta_data)
+        
 
 class BinomDrei(Scene):
     meta_data = {
@@ -665,5 +665,5 @@ class BinomDrei(Scene):
                 Transform(tb, MathTex("b^2").shift(tb.get_center()))
                 )
         self.add_timestamp()
-        with open("data.json", "a") as f:
-            f.write(json.dumps(self.meta_data, indent=2))
+
+        write_data(self.meta_data)

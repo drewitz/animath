@@ -4,18 +4,89 @@ const toc = document.getElementById("toc-list");
 
 const vid_data = [
   {
+    "title": "Allgemeines Binom",
+    "timestamps": [
+      3.499999999999998,
+      4.499999999999995,
+      5.499999999999991,
+      6.499999999999988,
+      7.499999999999984,
+      8.500000000000007
+    ],
+    "filename": "Allgemein.mp4",
+    "path": "videos/"
+  },
+  {
+    "title": "Third Binomial Formula",
+    "timestamps": [
+      1.0000000000000013,
+      2.9999999999999942,
+      3.9999999999999907,
+      4.999999999999988,
+      5.999999999999984,
+      6.9999999999999805,
+      13.000000000000076,
+      16.000000000000224,
+      17.000000000000167
+    ],
+    "filename": "BinomDrei.mp4",
+    "path": "videos/"
+  },
+  {
+    "title": "Animation of the binomal formula",
+    "timestamps": [
+      1.0000000000000013,
+      1.9999999999999978,
+      2.9999999999999942,
+      3.9999999999999907,
+      6.9999999999999805,
+      12.000000000000176
+    ],
+    "filename": "BinomEins.mp4",
+    "path": "videos/"
+  },
+  {
+    "title": "Second Binomial Formula",
+    "timestamps": [
+      1.0000000000000013,
+      1.9999999999999978,
+      2.9999999999999942,
+      3.9999999999999907,
+      4.999999999999988,
+      10.000000000000034,
+      16.00000000000018,
+      22.00000000000001
+    ],
+    "filename": "BinomZwei.mp4",
+    "path": "videos/"
+  },
+  {
+    "title": "Seerosenteich",
+    "timestamps": [
+      1.0000000000000013,
+      1.9999999999999978,
+      2.9999999999999942,
+      3.9999999999999907,
+      4.999999999999988,
+      5.999999999999984,
+      6.9999999999999805
+    ],
+    "filename": "Teich.mp4",
+    "path": "videos/"
+  },
+  {
     "title": "Reflections of Linear Functions",
     "timestamps": [
       0,
       2.0,
-      4.9999999999999964,
-      10.999999999999975,
-      11.999999999999972,
-      19.000000000000107,
-      20.000000000000156,
-      27.000000000000504,
-      28.000000000000554,
-      29.000000000000604
+      5.0,
+      11.0,
+      12.0,
+      19.0,
+      20.0,
+      27.0,
+      28.0,
+      29.0
     ],
     "filename": "Linear.mp4",
     "path": "videos/"
@@ -24,115 +95,44 @@ const vid_data = [
     "title": "Potenzfunktionen",
     "timestamps": [
       0,
-      1.0,
-      2.0,
-      3.0,
-      4.0,
-      5.0,
-      6.0,
-      7.0,
-      8.0,
-      9.0,
-      10.0,
-      11.0,
-      12.0,
-      13.0
+      1.0000000000000013,
+      1.9999999999999978,
+      2.9999999999999942,
+      3.9999999999999907,
+      4.999999999999988,
+      5.999999999999984,
+      6.9999999999999805,
+      7.999999999999977,
+      9.000000000000027,
+      10.000000000000076,
+      11.000000000000126,
+      12.000000000000176,
+      13.000000000000226
     ],
     "filename": "Potenz.mp4",
     "path": "videos/"
   },
   {
-    "title": "Allgemeines Binom",
+    "title": "Animation of the Newton method",
     "timestamps": [
-      3.5,
-      4.5,
-      5.5,
-      6.5,
-      7.5,
-      8.5
+      0,
+      1.9999999999999978,
+      3.9999999999999907,
+      5.999999999999984,
+      7.999999999999977
     ],
-    "filename": "Allgemein.mp4",
+    "filename": "Newton.mp4",
     "path": "videos/"
   },
   {
     "title": "Zahlenmengen",
     "timestamps": [
-      3.0,
-      6.0,
-      11.961653797587052,
-      26.961653797587253
+      2.9999999999999942,
+      5.999999999999984,
+      12.133333333333516,
+      27.133333333333255
     ],
     "filename": "Numbersets.mp4",
-    "path": "videos/"
-  },
-  {
-    "title": "Third Binomial Formula",
-    "timestamps": [
-      1.0,
-      3.0,
-      4.0,
-      5.0,
-      6.0,
-      7.0,
-      13.0,
-      16.0,
-      17.0
-    ],
-    "filename": "BinomDrei.mp4",
-    "path": "videos/"
-  },
-  {
-    "title": "Binomal Formula",
-    "timestamps": [
-      1.0,
-      2.0,
-      3.0,
-      4.0,
-      7.0,
-      12.0
-    ],
-    "filename": "BinomEins.mp4",
-    "path": "videos/"
-  },
-  {
-    "title": "Second Binomial Formula",
-    "timestamps": [
-      1.0,
-      2.0,
-      3.0,
-      4.0,
-      5.0,
-      10.0,
-      16.0,
-      22.0
-    ],
-    "filename": "BinomZwei.mp4",
-    "path": "videos/"
-  },
-  {
-    "title": "Seerosenteich",
-    "timestamps": [
-      1.0,
-      2.0,
-      3.0,
-      4.0,
-      5.0,
-      6.0,
-      7.0
-    ],
-    "filename": "Teich.mp4",
-    "path": "videos/"
-  },
-  {
-    "title": "Newton method",
-    "timestamps": [
-      0,
-      2.0,
-      4.0,
-      6.0,
-      8.0
-    ],
-    "filename": "Newton.mp4",
     "path": "videos/"
   }
 ];

@@ -1,6 +1,7 @@
 from manim import *
-import json
 import numpy as np
+
+from modules.data_write import write_data
 
 
 common_kwargs = {"fill_opacity": 0.9}
@@ -54,6 +55,4 @@ class Teich(Scene):
             rose = VGroup(rose, newrose)
             self.add_timestamp()
 
-
-        with open("data.json", "a") as f:
-            f.write(json.dumps(self.meta_data, indent=2))
+        write_data(self.meta_data)
