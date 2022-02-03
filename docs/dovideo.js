@@ -33,7 +33,7 @@ const vid_data = [
     "path": "videos/"
   },
   {
-    "title": "Animation of the binomal formula",
+    "title": "Fist Binomal Formula",
     "timestamps": [
       1.0000000000000013,
       1.9999999999999978,
@@ -113,7 +113,7 @@ const vid_data = [
     "path": "videos/"
   },
   {
-    "title": "Animation of the Newton method",
+    "title": "Newton method",
     "timestamps": [
       0,
       1.9999999999999978,
