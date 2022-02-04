@@ -31,6 +31,7 @@ function hide_toc(){
   toc.innerHTML = "";
   newli = document.createElement("li");
   newli.classList.add("last");
+  newli.onclick = function(){populate_toc();}
   newli.innerHTML = "Table of Contents";
   toc.appendChild(newli);
 }
