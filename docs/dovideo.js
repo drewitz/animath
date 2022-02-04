@@ -27,19 +27,30 @@ function load_video(n){
 
 load_video(current_video);
 
+function hide_toc(){
+  toc.innerHTML = "";
+  newli = document.createElement("li");
+  newli.classList.add("last");
+  newli.innerHTML = "Table of Contents";
+  toc.appendChild(newli);
+}
+
 function populate_toc(){
+  toc.innerHTML="";
   for (var i=0; i < vid_data.length; i++){
     x = vid_data[i];
     newli = document.createElement("li");
     newli.id = i;
     // TODO: need to somehow save the value of i here?
-    newli.onclick = function(){load_video(this.id)};
+    newli.onclick = function(){
+      load_video(this.id);
+      hide_toc();
+    };
     newli.innerHTML = x.title;
     toc.appendChild(newli);
   }
   toc.lastChild.classList.add("last");
 }
-populate_toc();
 
 function load_prev_timestamp(){
   if (current_stamp > 0) {
