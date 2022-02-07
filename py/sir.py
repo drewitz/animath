@@ -1,7 +1,7 @@
 from modules.population import Population
 from modules.data_write import write_data
 
-tmax = 7
+tmax = 10
 
 meta_data = {
     "title": "SIR Model",
@@ -11,8 +11,8 @@ meta_data = {
 }
 
 
-pop = Population(3600, nrows=60)
+pop = Population(4*3600, nrows=60*2)
 dest = pop.animate(tmax=tmax, dt=0.1)
-pop.show()
+#pop.show()
 write_data(meta_data)
-#dest.save("docs/videos/sir-model.mp4")
+dest.save("docs/videos/sir-model.mp4")

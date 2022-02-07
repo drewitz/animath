@@ -134,7 +134,7 @@ class Population:
         self.dt = dt
 
         # setup plot
-        fig, axes = plt.subplots(1,2)
+        fig, axes = plt.subplots(1,2, figsize=(16, 9))
         fig.patch.set_facecolor(self.background)
         ax = axes[0]
         ax.set_xlim(Particle.xmin, Particle.xmax)
@@ -153,15 +153,15 @@ class Population:
         # infected
         xinf = data["xs"][0][data["inf"][0]]
         yinf = data["ys"][0][data["inf"][0]]
-        self.dotsinf, = ax.plot(xinf, yinf, "or")
+        self.dotsinf, = ax.plot(xinf, yinf, "or", markersize=5)
         # susceptible
         xsus = data["xs"][0][data["sus"][0]]
         ysus = data["ys"][0][data["sus"][0]]
-        self.dotssus, = ax.plot(xsus, ysus, "ob")
+        self.dotssus, = ax.plot(xsus, ysus, "ob", markersize=5)
         # susceptible
         xrec = data["xs"][0][data["rec"][0]]
         yrec = data["ys"][0][data["rec"][0]]
-        self.dotsrec, = ax.plot(xrec, yrec, "og")
+        self.dotsrec, = ax.plot(xrec, yrec, "og", markersize=5)
 
         self.anim = animation.FuncAnimation(fig, self.next_step, frames=data["n"])
         return self.anim
@@ -175,6 +175,6 @@ class Population:
 
 
 if __name__ == "__main__":
-    pop = Population(3600, nrows=60)
+    pop = Population(4*3600, nrows=60*2)
     dest = pop.animate(tmax=6, dt=0.1)
     dest.show()
