@@ -9,7 +9,6 @@ def write_data(meta):
     the_data = []
     if os.path.isfile(file):
         with open(file, "r") as f:
-            print(f)
             the_data = json.loads(f.read())
     the_data.append(meta)
     with open(file, "w") as f:
