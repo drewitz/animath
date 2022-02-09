@@ -1,9 +1,7 @@
 const video = document.getElementById("thevideo");
 const title = document.getElementById("thetitle");
 const toc = document.getElementById("toc-list");
-
-var current_stamp = 0;
-var current_video = 0;
+const colls = document.getElementsByClassName("collapsible")
 
 function get_parameters() {
   params = new URLSearchParams(window.location.search);
@@ -13,7 +11,6 @@ function get_parameters() {
   }
   return 0 <= dest & dest < vid_data.length ? dest : 0;
 }
-current_video = get_parameters();
 
 function load_video(n){
   // n specifies the index in the vid_data.
@@ -25,19 +22,7 @@ function load_video(n){
   title.innerHTML = vid_data[n].title;
 }
 
-load_video(current_video);
-
-function hide_toc(){
-  toc.innerHTML = "";
-  newli = document.createElement("li");
-  newli.classList.add("last");
-  newli.onclick = function(){populate_toc();}
-  newli.innerHTML = "Table of Contents";
-  toc.appendChild(newli);
-}
-
 function populate_toc(){
-  toc.innerHTML="";
   for (var i=0; i < vid_data.length; i++){
     x = vid_data[i];
     newli = document.createElement("li");
@@ -45,12 +30,14 @@ function populate_toc(){
     // TODO: need to somehow save the value of i here?
     newli.onclick = function(){
       load_video(this.id);
-      hide_toc();
+      var tocdiv = document.getElementById("toc");
+      var tocbutton = document.getElementById("toc-button");
+      tocdiv.style.maxHeight = null;
+      tocbutton.classList.toggle("active");
     };
     newli.innerHTML = x.title;
     toc.appendChild(newli);
   }
-  toc.lastChild.classList.add("last");
 }
 
 function load_prev_timestamp(){
@@ -87,7 +74,6 @@ function playPause() {
   }
 }
 
-document.addEventListener('keydown', logKey);
 function logKey(e) {
   switch (e.code) {
     case "ArrowRight":
@@ -107,3 +93,23 @@ function logKey(e) {
       console.log("unknown key code: " + e.code);
   }
 }
+
+// run this at start
+var current_stamp = 0;
+var current_video = get_parameters();
+load_video(current_video);
+
+populate_toc();
+// enable collapsing
+const tbutton = document.getElementById("toc-button");
+tbutton.addEventListener("click", function() {
+  this.classList.toggle("active");
+  var content = this.nextElementSibling;
+  if (content.style.maxHeight){
+    content.style.maxHeight = null;
+  } else {
+    content.style.maxHeight = content.scrollHeight + "px";
+  } 
+});
+// add keyboard shortcuts
+document.addEventListener('keydown', logKey);

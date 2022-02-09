@@ -19,6 +19,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   font-family: sans-serif;
+  overflow-y: scroll;
 }
 
 h1 {
@@ -36,11 +37,14 @@ video {
   align-items: center;
 }
 
+button {
+  border-radius: 13px;
+}
+
 #button-bar button {
   min-width: 10rem;
   box-shadow:inset 0px -3px 7px 0px --colour-0-dark;
   background: linear-gradient(to bottom, var(--colour-0), var(--colour-0-dark));
-  border-radius:13px;
   border:1px solid var(--colour-1);
   display:inline-block;
   color: var(--colour-1);
@@ -51,33 +55,36 @@ video {
 }
 
 #toc ol li {
-  display: inline;
-  padding: 0 2rem;
-  font-family: sans-serif;
+  cursor: pointer;
+}
+
+.collapsible {
+  background-color: var(--colour-0);
+  color: var(--colour-1-dark);
   font-weight: bold;
-  border-right-width: 1px;
-  border-right-color: white;
-  border-right-style: solid;
   cursor: pointer;
-}
-#toc .last {
-  border-right-width: 0;
-  border-right-style: none;
-}
-#toc ol {
-  padding: 0.25rem 0;
-  background: var(--colour-0);
-}
-#toc {
-  padding-bottom: 0.5rem;
-  text-decoration: none;
-  color: var(--colour-1);
-  text-align: center;
-  height: 1.5rem;
-}
-/* #toc button {
-  background: none!important;
+  width: 100%;
+  padding: 10px;
   border: none;
-  padding: 0!important;
-  cursor: pointer;
-} */
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.active {
+  background-color: var(--colour-0-dark);
+  background: linear-gradient(to top, var(--colour-0), var(--colour-0-dark));
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  background-color: var(--colour-0);
+  color: var(--colour-1-dark);
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
+}
