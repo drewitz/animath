@@ -1,6 +1,20 @@
+:root {
+  --colour-0: #5be800;
+  --colour-1: #0777ba;
+  --colour-2: #ff8c00;
+  --colour-3: #ee003c;
+  --colour-4: #cec2ff;
+
+  --colour-0-dark: #3a9400;
+  --colour-1-dark: #03456b;
+  --colour-2-dark: #a85d00;
+  --colour-3-dark: #990026;
+  --colour-4-dark: #5c33ff;
+}
+
 body {
   background: black;
-  color: white;
+  color: var(--colour-2);
   max-width: 80%;
   margin-left: auto;
   margin-right: auto;
@@ -24,14 +38,14 @@ video {
 
 #button-bar button {
   min-width: 10rem;
-  box-shadow:inset 0px -3px 7px 0px #555555;
-  background-color: #5BE800;
-  border-radius:3px;
-  border:1px solid #FF8C00;
+  box-shadow:inset 0px -3px 7px 0px --colour-0-dark;
+  background: linear-gradient(to bottom, var(--colour-0), var(--colour-0-dark));
+  border-radius:13px;
+  border:1px solid var(--colour-1);
   display:inline-block;
-  color:#0777BA;
+  color: var(--colour-1);
   padding:9px 20px;
-  text-shadow:0px 1px 0px #555555;
+  text-shadow:0px 1px 0px var(--colour-1-dark);
   justify-content: space-around;
   margin: 5px;
 }
@@ -52,12 +66,12 @@ video {
 }
 #toc ol {
   padding: 0.25rem 0;
-  background: #5BE800;
+  background: var(--colour-0);
 }
 #toc {
   padding-bottom: 0.5rem;
   text-decoration: none;
-  color: #0777BA;
+  color: var(--colour-1);
   text-align: center;
   height: 1.5rem;
 }
