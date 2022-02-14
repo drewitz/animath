@@ -10,6 +10,10 @@ from matplotlib import animation
 from modules.particle import Particle
 
 
+col_s = "#0777ba"
+col_i = "#ee003c"
+col_r = "#5be800"
+
 class Population:
     """Population is a collection of particles
     """
@@ -146,22 +150,22 @@ class Population:
         ax2.set_xlim(0, tmax)
         ax2.set_ylim(0, self.psize)
         self.t = np.linspace(0, tmax, data["n"])
-        self.pinf, = ax2.plot(self.t[:1], data["ninf"][:1], "r")
-        self.psus, = ax2.plot(self.t[:1], data["nsus"][:1], "b")
-        self.prec, = ax2.plot(self.t[:1], data["nrec"][:1], "g")
+        self.pinf, = ax2.plot(self.t[:1], data["ninf"][:1], col_i)
+        self.psus, = ax2.plot(self.t[:1], data["nsus"][:1], col_s)
+        self.prec, = ax2.plot(self.t[:1], data["nrec"][:1], col_r)
 
         # infected
         xinf = data["xs"][0][data["inf"][0]]
         yinf = data["ys"][0][data["inf"][0]]
-        self.dotsinf, = ax.plot(xinf, yinf, "or", markersize=5)
+        self.dotsinf, = ax.plot(xinf, yinf, "o", color=col_i, markersize=5)
         # susceptible
         xsus = data["xs"][0][data["sus"][0]]
         ysus = data["ys"][0][data["sus"][0]]
-        self.dotssus, = ax.plot(xsus, ysus, "ob", markersize=5)
+        self.dotssus, = ax.plot(xsus, ysus, "o", color=col_s, markersize=5)
         # susceptible
         xrec = data["xs"][0][data["rec"][0]]
         yrec = data["ys"][0][data["rec"][0]]
-        self.dotsrec, = ax.plot(xrec, yrec, "og", markersize=5)
+        self.dotsrec, = ax.plot(xrec, yrec, "o", color=col_r, markersize=5)
 
         self.anim = animation.FuncAnimation(fig, self.next_step, frames=data["n"])
         return self.anim

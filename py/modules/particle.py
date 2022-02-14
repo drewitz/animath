@@ -13,9 +13,9 @@ class Particle:
     should be able to move and bump into things.
     """
     xmin = 0
-    xmax = 40
+    xmax = 25
     ymin = 0
-    ymax = 40
+    ymax = 25
 
     @classmethod
     def in_bulk(cls, n, nrows=10):
