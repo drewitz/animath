@@ -25,7 +25,9 @@ class Population:
     background = "black"
 
 
-    def __init__(self, psize=100, nrows=10, ninfected=5):
+    def __init__(self, psize=100, nrows=10, ninfected=5, bdies=None):
+        if bdies is not None:
+            Particle.set_bdy(*bdies)
         self.psize = psize
         # create particles on a line at first
         self.pop = Particle.in_bulk(psize, nrows)

@@ -11,7 +11,7 @@ meta_data = {
 }
 
 
-pop = Population(3600, nrows=60)
+pop = Population(100, nrows=10, bdies=[0, 7, 0, 7])
 dest = pop.animate(tmax=tmax, dt=0.1)
 #pop.show()
 write_data(meta_data)

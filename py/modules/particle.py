@@ -18,6 +18,10 @@ class Particle:
     ymax = 25
 
     @classmethod
+    def set_bdy(cls, xmin, xmax, ymin, ymax):
+        cls.xmin, cls.xmax, cls.ymin, cls.ymax = xmin, xmax, ymin, ymax
+
+    @classmethod
     def in_bulk(cls, n, nrows=10):
         if n//nrows*nrows == n:
             a = n//nrows
