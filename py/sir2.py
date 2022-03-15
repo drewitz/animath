@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
 from scipy.integrate import odeint
 
-tmax = 25
+tmax = 50
 
 meta_data = {
     "title": "SIR Model 2",
@@ -29,9 +29,11 @@ s0 = 0.99
 i0 = 1-s0
 r0 = 0
 
-def model(vec, t, a=a, b=b):
+def model(vec, t, a=a, b=b, alate=a):
     """ vec = [s, i, r]
     """
+    if t > 10:
+        a = alate
     return [-a*vec[0]*vec[1], a*vec[0]*vec[1] - b*vec[1], b*vec[1]]
 
 t = np.linspace(0, tmax, 100)
@@ -48,10 +50,19 @@ plt.legend()
 
 plt.subplots_adjust(bottom=0.4)
 # Make a horizontal slider to control the frequency.
-ax_slide = plt.axes([0.25, 0.1, 0.65, 0.03])
+ax_slide = plt.axes([0.25, 0.05, 0.65, 0.03])
 slide_a = Slider(
     ax=ax_slide,
     label='parameter a',
+    valmin=0,
+    valmax=2,
+    valinit=a,
+)
+
+ax_slide = plt.axes([0.25, 0.15, 0.65, 0.03])
+slide_a2 = Slider(
+    ax=ax_slide,
+    label='parameter a_late',
     valmin=0,
     valmax=2,
     valinit=a,
@@ -67,13 +78,14 @@ slide_b = Slider(
 )
 
 def update(val):
-    sol = odeint(model, [s0, i0, r0], t, args=(slide_a.val, slide_b.val))
+    sol = odeint(model, [s0, i0, r0], t, args=(slide_a.val, slide_b.val, slide_a2.val))
     for i in range(3):
         lines[i].set_ydata(sol[:, i])
     fig.canvas.draw_idle()
 
 slide_a.on_changed(update)
 slide_b.on_changed(update)
+slide_a2.on_changed(update)
 
 plt.show()
 
