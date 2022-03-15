@@ -18,19 +18,20 @@ class Population:
     """Population is a collection of particles
     """
 
-    recover_time = 2
+    recover_time = 5
     # diameter of particles
-    diameter = 0.25
+    diameter = 0.2
     # setup plot
     background = "black"
 
 
-    def __init__(self, psize=100, nrows=10, ninfected=5, bdies=None):
+    def __init__(self, psize=100, nrows=10, ninfected=5, bdies=None, speed=1, rec_time=2.5):
+        self.recover_time = rec_time
         if bdies is not None:
             Particle.set_bdy(*bdies)
         self.psize = psize
         # create particles on a line at first
-        self.pop = Particle.in_bulk(psize, nrows)
+        self.pop = Particle.in_bulk(psize, nrows, speed=speed)
         # save indices of susceptible, infected and recovered
         self.infected = np.random.choice(np.arange(psize), ninfected)
         self.susceptible = np.setdiff1d(np.arange(psize), self.infected)
@@ -137,6 +138,7 @@ class Population:
 
     def animate(self, tmax=1, dt=0.1):
         data = self.calculate(tmax, dt)
+        self.tmax = tmax
         self.dt = dt
 
         # setup plot
@@ -169,7 +171,7 @@ class Population:
         yrec = data["ys"][0][data["rec"][0]]
         self.dotsrec, = ax.plot(xrec, yrec, "o", color=col_r, markersize=5)
 
-        self.anim = animation.FuncAnimation(fig, self.next_step, frames=data["n"])
+        self.anim = animation.FuncAnimation(fig, self.next_step, frames=data["n"], interval=dt*1000)
         return self.anim
         
     def show(self):
@@ -177,7 +179,7 @@ class Population:
     
     def save(self, dest="sir-animation.mp4"):
         mw = animation.FFMpegWriter()
-        self.anim.save(dest, writer=mw, fps=1/self.dt)
+        self.anim.save(dest, writer=mw)
 
 
 if __name__ == "__main__":

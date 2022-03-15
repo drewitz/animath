@@ -22,7 +22,7 @@ class Particle:
         cls.xmin, cls.xmax, cls.ymin, cls.ymax = xmin, xmax, ymin, ymax
 
     @classmethod
-    def in_bulk(cls, n, nrows=10):
+    def in_bulk(cls, n, nrows=10, speed=1):
         if n//nrows*nrows == n:
             a = n//nrows
             b = nrows
@@ -32,7 +32,7 @@ class Particle:
         xs = np.linspace(cls.xmin, cls.xmax, a+1, endpoint=False)
         ys = np.linspace(cls.ymin, cls.ymax, b+1, endpoint=False)
         x, y = np.meshgrid(np.delete(xs, 0), np.delete(ys, 0))
-        return [Particle([p[0], p[1]], [np.sin(2*np.pi*p[2]), np.cos(2*np.pi*p[2])])
+        return [Particle([p[0], p[1]], [speed*np.sin(2*np.pi*p[2]), speed*np.cos(2*np.pi*p[2])])
                 for p in zip(x.reshape(-1), y.reshape(-1), np.random.rand(n))
                 ]
 
