@@ -47,13 +47,17 @@ class Kathetensatz(Scene):
         p3_0 = p2 + pc - pb
         p4_0 = pc
         square = Polygon(p1, p2, p3_0, p4_0, color=colour_quad, **common_kwargs)
+        self.add(square)
 
+        # a^2
+        text_a2 = MathTex("a^2").shift(square.get_center())
+        self.add(text_a2)
+        text_eq = MathTex("a^2", "=", "pc").shift(1.5*r*UP)
         # animation updater
-
+        self.play(text_a2.animate.move_to(text_eq.get_part_by_tex("a^2").get_center()))
         square.add_updater(
             lambda x: x.become(Polygon(p1, p2, p3_0 + (pa - pc)*t_tracker.get_value(), p4_0 + (pa - pc)*t_tracker.get_value(), color=colour_quad, **common_kwargs))
         )
-        self.add(square)
         self.play(t_tracker.animate.increment_value(1), run_time=rt)
         self.add_timestamp()
 
@@ -82,6 +86,8 @@ class Kathetensatz(Scene):
                                 color=colour_quad, **common_kwargs))
         )
         self.play(s_tracker.animate.increment_value(1), run_time=rt)
+        text_pc = MathTex("pc").shift(square.get_center())
+        self.play(FadeIn(text_pc), FadeIn(text_eq))
         self.add_timestamp()
         
         write_data(self.meta_data)
