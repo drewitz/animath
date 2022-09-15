@@ -39,11 +39,11 @@ class Pythagoras1(Scene):
         text_b = MathTex("b").next_to(triangle, DOWN)
         text_c = MathTex("c").next_to([b/2, a/2, 0], (UP+RIGHT)/np.sqrt(2))
 
-        self.add_timestamp()
         tri_and_text = VGroup(triangle, text_a, text_b, text_c)
         self.play(Create(triangle))
         self.play(FadeIn(text_a, text_b, text_c))
         self.play(tri_and_text.animate.shift((a+b)/2*(LEFT+DOWN)))
+        self.add_timestamp()
         # square over the hypotenuse
         csquare = Square(c, color=colourcomp, **common_kwargs).rotate(np.arctan(b/a))
         text_c2 = text_c.copy()
