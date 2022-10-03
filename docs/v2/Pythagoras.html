@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://cindyjs.org/dist/latest/Cindy.js"></script>
+    <title>A CindyJS-Applet</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://cindyjs.org/dist/v0.8/CindyJS.css">
+  </head>
+
+  <body>
+    <h1>Satz des Pythagoras</h1>
+
+    <div id="CSCanvas"></div>
+
+    <script id="csinit" type="text/x-cindyscript">
+      colour1 = (91/255, 232/255, 0);
+      colour2 = (7/255, 119/255, 186/255);
+      colour3 = (255/255, 140/255, 0);
+      colour4 = (238/255, 0, 60/255);
+      textoffy = 20; // textoffset in pixels
+      textoffx = 10; // textoffset in pixels
+      alpha = 0;
+      direction = 1;
+    </script>
+
+    <!--<script id="cssimulationstart" type="text/x-cindyscript">-->
+    <script id="cssimulationstop" type="text/x-cindyscript">
+      if(alpha<0, alpha=0; direction=1;);
+      if(alpha>pi/2, alpha=pi/2; direction=-1);
+    </script>
+    <script id="cstick" type="text/x-cindyscript">
+      if(
+        alpha >= 0 & alpha <= pi/2,
+        //drawtext([0, -0.5], "hello");
+        alpha = alpha+0.01*direction;
+      );
+      if(
+        alpha < 0 % alpha > pi/2,
+        stopanimation();
+      );
+    </script>
+
+    <script id="csdraw" type="text/x-cindyscript">
+      // first square
+      ABortho = [-(B-A).y, (B-A).x];
+      C = B + ABortho;
+      D = A + ABortho;
+
+      // // second square
+      // AA = 3*A-2*B;
+      // BB = AA + B-A;
+      // CC = BB + ABortho;
+      // DD = AA + ABortho;
+
+      // midpoints
+      AM = M1-A;
+      AMortho = [-(M1-A).y, (M1-A).x];
+      M2 = B + AMortho;
+      M3 = C + A - M1;
+      M4 = D - AMortho;
+      // first dissection
+      draw(B, C);
+      draw(C, D);
+      draw(D, A);
+      //drawpoly([M1, M2, M3, M4]);
+      TA1 = M1 - cos(alpha)*AM + sin(alpha)*AMortho;
+      MM = M4 - M1;
+      MMortho = [(M4 - M1).y, (M1 - M4).x];
+      TA2 = M1+cos(alpha)*MM+ sin(alpha)*MMortho;
+      fillpoly([TA1, M1, TA2], color->colour1);
+      fillpoly([B, M2, M1], color->colour2);
+      // transl = sin(alpha)*(D-M3);
+      transl = 0.5*(1-cos(2*alpha))*(D-M3);
+      fillpoly([C+transl, M3+transl, M2+transl], color->colour3);
+      TD = M3 + transl + cos(alpha)*(D-M3) + sin(alpha)*(A-M4);
+      TMM = M3 + transl - cos(alpha)*MMortho - sin(alpha)*MM;
+      fillpoly([TD, M3+transl, TMM], color->colour4);
+
+      // // second dissection
+      // drawpoly([AA, BB, CC, DD]);
+      // AB = AA + M1 - A;
+      // MM = AB + AMortho;
+      // DA = AA + AMortho;
+      // BC = DA + B - A;
+      // CD = AB + ABortho;
+      // fillpoly([MM, AB, BC], color->colour1);
+      // fillpoly([BB, AB, BC], color->colour2);
+      // fillpoly([MM, DD, CD], color->colour3);
+      // fillpoly([MM, DD, DA], color->colour4);
+
+      // labels
+      // first square
+      // bottom
+      drawtext(0.5*(A+M1), "$a$", yoffset->-textoffy, align->"mid", color->grey(1));
+      drawtext(0.5*(B+M1), "$b$", yoffset->-textoffy, align->"mid", color->grey(1));
+      // top
+      // drawtext(0.5*(C+M3), "$a$", yoffset->0.5*textoffy, align->"mid", color->grey(1));
+      // drawtext(0.5*(D+M3), "$b$", yoffset->0.5*textoffy, align->"mid", color->grey(1));
+      // left
+      // drawtext(0.5*(D+M4), "$a$", offset->[-textoffx, -5], align->"right", color->grey(1));
+      // drawtext(0.5*(A+M4), "$b$", offset->[-textoffx, -5], align->"right", color->grey(1));
+      // right
+      drawtext(0.5*(B+M2), "$a$", offset->[textoffx, -5], align->"left", color->grey(1));
+      drawtext(0.5*(C+M2), "$b$", offset->[textoffx, -5], align->"left", color->grey(1));
+
+      // // second square
+      // // bottom
+      // drawtext(0.5*(AA+AB), "$a$", yoffset->-textoffy, align->"mid", color->grey(1));
+      // drawtext(0.5*(BB+AB), "$b$", yoffset->-textoffy, align->"mid", color->grey(1));
+      // // left
+      // drawtext(0.5*(AA+DA), "$a$", offset->[-textoffx, -5], align->"right", color->grey(1));
+      // drawtext(0.5*(DD+DA), "$b$", offset->[-textoffx, -5], align->"right", color->grey(1));
+      // // top
+      // //drawtext(0.5*(DD+CD), "a", yoffset->0.5*textoffy, align->"mid", color->grey(1));
+      // //drawtext(0.5*(CC+CD), "b", yoffset->0.5*textoffy, align->"mid", color->grey(1));
+    </script>
+
+    <script type="text/javascript">
+    CindyJS({
+      scripts: "cs*",
+      ports: [{
+        id: "CSCanvas",
+        width: 1000,
+        height: 500,
+        background: "rgb(10, 10, 10)",
+        transform: [{
+          visibleRect: [-2, 2, 2, -2]
+        }]
+      }],
+      animation: {
+        autoplay: false,
+        controls: true,
+      },
+      geometry: [
+        {name:"A", kind:"P", type:"Free", pos:[-1, -1], visible: false},
+        {name:"B", kind:"P", type:"Free", pos:[1, -1], visible: false},
+        {name: "a", type: "Segment", color: [0.0, 0.0, 1.0], args: ["A", "B"]},
+        {name: "M1", type: "PointOnSegment", args: ["a"], pos: [0.2360679774997898, 0]}
+      ]
+    });
+    </script>
+  </body>
+</html>
