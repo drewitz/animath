@@ -29,12 +29,13 @@ class Sine(Scene):
     def construct(self):
         # self.draw_logo()
         axmax = 1.7
+        n = 8 # multiples of 90*DEGREES to plot
         ax1 = Axes(
             x_range=[-axmax, axmax], y_range=[-axmax, axmax], x_length=2*axmax, y_length=2*axmax
             )
         ax2 = Axes(
-            x_range=[0, 720*DEGREES, 90*DEGREES], y_range=[-axmax, axmax], x_length=8, y_length=2*axmax
-            )
+            x_range=[0, n*90*DEGREES, 90*DEGREES], y_range=[-axmax, axmax], x_length=8, y_length=2*axmax
+            ).add_coordinates({i*90*DEGREES: MathTex(90*i) for i in range(1, n)})
         ax2.move_to([2, 0, 0])
         phi_label = ax2.get_x_axis_label(MathTex("\\varphi"), direction=DOWN, buff=0.4)
         ax1.next_to(ax2, LEFT)
@@ -53,6 +54,9 @@ class Sine(Scene):
                 )
             )
         )
+        angle = Arc(radius=0.2, angle=phi.get_value(), arc_center=ax1.coords_to_point(0, 0)).add_updater(
+            lambda x: x.become(Arc(radius=0.2, angle=phi.get_value(), arc_center=ax1.coords_to_point(0, 0)))
+            )
         unicirc = Circle(1, color=coloursec1).move_to(ax1.coords_to_point(0, 0))
         unipoint = Dot(ax1.coords_to_point(np.cos(phi.get_value()), np.sin(phi.get_value())), color=colourcomp)
         unipoint.add_updater(
@@ -113,7 +117,7 @@ class Sine(Scene):
         # screenplay
         self.add(ax1, ax2)
         self.add(triangle)
-        self.add(unicirc)
+        self.add(unicirc, angle)
         self.add(hline, vline, sine_line, point, unipoint, phi_label)
         self.wait(1)
         self.play(phi.animate.set_value(80*DEGREES))
