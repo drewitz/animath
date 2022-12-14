@@ -21,12 +21,15 @@ $(vidfolder)/Potenz.mp4: py/monome.py
 	manim render py/monome.py Potenz
 $(vidfolder)/Numbersets.mp4: py/nzqrc.py
 	manim render py/nzqrc.py Numbersets
+$(vidfolder)/Sine.mp4: py/sine.py
+	manim render py/sine.py Sine
 
 $(vidfolder)/sir-model.mp4: py/sir.py py/modules/particle.py py/modules/population.py
 	python py/sir.py
 
 vid_data.js: $(vidfolder)/Allgemein.mp4 $(vidfolder)/BinomEins.mp4 $(vidfolder)/BinomZwei.mp4 $(vidfolder)/BinomDrei.mp4 \
-		$(vidfolder)/Teich.mp4 $(vidfolder)/Linear.mp4 $(vidfolder)/Newton.mp4 $(vidfolder)/Potenz.mp4 $(vidfolder)/Numbersets.mp4
+		$(vidfolder)/Teich.mp4 $(vidfolder)/Linear.mp4 $(vidfolder)/Newton.mp4 $(vidfolder)/Potenz.mp4 $(vidfolder)/Numbersets.mp4 \
+		$(vidfolder)/Sine.mp4
 	echo "vid_data =" > docs/vid_data.js
 	cat data.json >> docs/vid_data.js
 	echo ";\n" >> docs/vid_data.js

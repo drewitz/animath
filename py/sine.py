@@ -16,7 +16,7 @@ class Sine(Scene):
     meta_data = {
         "title": "Sine",
         "timestamps": [0],
-        "filename": "sine.mp4",
+        "filename": "Sine.mp4",
         "path": "videos/"
     }
 
