@@ -12,8 +12,8 @@ Auf der [GitHub Page] kann man die Videos mit Shortcuts abspielen und anhalten.
 Die meisten Videos koennen abschnittsweise abgespielt werden.
 
 - `F`: Vollbild
-- `&#8594;`: spiele den naechsten Abschnitt
-- `&#8592;`: gehe einen Abschnitt zurueck
+- &rarr;: spiele den naechsten Abschnitt
+- &larr;: gehe einen Abschnitt zurueck
 - `Leertaste` oder `Enter`: Play/Pause
 
 [GitHub Page]: https://drewitz.github.io/animath/
