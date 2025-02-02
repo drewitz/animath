@@ -2,8 +2,8 @@ import numpy as np
 from scipy.special import comb
 from manim import *
 from manim_slides import Slide
-from histogram import Histogram
-from samples import DeterministicSample
+from modules.histogram import Histogram
+from modules.samples import DeterministicSample
 
 
 class BinomialDist(Slide):
