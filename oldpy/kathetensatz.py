@@ -1,7 +1,8 @@
 from manim import *
+from manim_slides import Slide
 import numpy as np
 
-from modules.data_write import write_data
+
 
 # PARAMETERS
 
@@ -16,23 +17,8 @@ colour_quad = "#0777ba"
 common_kwargs = {"fill_opacity": 0.5}
 
 
-class Kathetensatz(Scene):
-    meta_data = {
-        "title": "Kathetensatz",
-        "timestamps": [0],
-        "filename": "Kathetensatz.mp4",
-        "path": "videos/"
-    }
-
-    def draw_logo(self):
-        self.add(SVGMobject("stz-white.svg").scale_to_fit_width(0.3).to_corner(corner=RIGHT + DOWN))
-
-        
-    def add_timestamp(self):
-        self.meta_data["timestamps"].append(self.renderer.time)
-
+class Kathetensatz(Slide):
     def construct(self):
-        self.draw_logo()
         # Parameters
         pa = np.array([-r, 0, 0])
         pb = np.array([r, 0, 0])
@@ -59,7 +45,7 @@ class Kathetensatz(Scene):
             lambda x: x.become(Polygon(p1, p2, p3_0 + (pa - pc)*t_tracker.get_value(), p4_0 + (pa - pc)*t_tracker.get_value(), color=colour_quad, **common_kwargs))
         )
         self.play(t_tracker.animate.increment_value(1), run_time=rt)
-        self.add_timestamp()
+        self.next_slide()
 
         angle_tracker = ValueTracker(0)
         p4 = pa
@@ -73,7 +59,7 @@ class Kathetensatz(Scene):
                                 color=colour_quad, **common_kwargs))
         )
         self.play(angle_tracker.animate.increment_value(np.pi/2), run_time=rt)
-        self.add_timestamp()
+        self.next_slide()
         
 
         p2 = pc
@@ -88,6 +74,4 @@ class Kathetensatz(Scene):
         self.play(s_tracker.animate.increment_value(1), run_time=rt)
         text_pc = MathTex("pc").shift(square.get_center())
         self.play(FadeIn(text_pc), FadeIn(text_eq))
-        self.add_timestamp()
-        
-        write_data(self.meta_data)
+

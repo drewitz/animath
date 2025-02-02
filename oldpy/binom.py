@@ -1,6 +1,7 @@
 from manim import *
+from manim_slides import Slide
 
-from modules.data_write import write_data
+
 
 # PARAMETERS
 
@@ -18,23 +19,8 @@ colour_rc = RED
 common_kwargs = {"fill_opacity": 0.5}
 
 
-class Allgemein(Scene):
-    meta_data = {
-        "title": "Allgemeines Binom",
-        "timestamps": [],
-        "filename": "Allgemein.mp4",
-        "path": "videos/"
-    }
-
-    def draw_logo(self):
-        self.add(SVGMobject("stz-white.svg").scale_to_fit_width(0.3).to_corner(corner=RIGHT + DOWN))
-
-        
-    def add_timestamp(self):
-        self.meta_data["timestamps"].append(self.renderer.time)
-
+class Allgemein(Slide):
     def construct(self):
-        self.draw_logo()
         # Parameters
         a, b = 4, 1.5
         c, d = 3, 2
@@ -116,50 +102,33 @@ class Allgemein(Scene):
         self.play(Create(rc))
         self.wait(supershort)
         self.play(*[Create(b) for b in braces])
-        self.add_timestamp()
+        self.next_slide()
         # dissection
         self.play(
                 textrc.animate.shift((a+dist)*LEFT + c*UP)
                 )
         # get the rectangles/squares
-        self.add_timestamp()
+        self.next_slide()
         self.play(Create(rectac),
                 Transform(tac, textac)
                 )
-        self.add_timestamp()
+        self.next_slide()
         self.play(Create(rectad),
                 Transform(tad, textad)
                 )
-        self.add_timestamp()
+        self.next_slide()
         self.play(Create(rectbc),
                 Transform(tbc, textbc)
                 )
-        self.add_timestamp()
+        self.next_slide()
         self.play(Create(rectbd),
                 Transform(tbd, textbd)
                 )
-        self.add_timestamp()
 
-        write_data(self.meta_data)
 
 # SCENE
-class BinomEins(Scene):
-    meta_data = {
-        "title": "First Binomal Formula",
-        "timestamps": [],
-        "filename": "BinomEins.mp4",
-        "path": "videos/"
-    }
-
-    def draw_logo(self):
-        self.add(SVGMobject("stz-white.svg").scale_to_fit_width(0.3).to_corner(corner=RIGHT + DOWN))
-
-        
-    def add_timestamp(self):
-        self.meta_data["timestamps"].append(self.renderer.time)
-
+class BinomEins(Slide):
     def construct(self):
-        self.draw_logo()
         # Parameters
         a, b = 3, 2
         # rectangles
@@ -241,22 +210,22 @@ class BinomEins(Scene):
         self.play(Create(rc),
                 *[Create(b) for b in braces0]
                 )
-        self.add_timestamp()
+        self.next_slide()
         # dissection
         self.play(
                 textrc.animate.shift((a+dist)*LEFT + a*UP),
                 *[Create(b) for b in braces1]
                 )
         # get the rectangles/squares
-        self.add_timestamp()
+        self.next_slide()
         self.play(Create(squarea),
                 Transform(ta, texta)
                 )
-        self.add_timestamp()
+        self.next_slide()
         self.play(Create(squareb),
                 Transform(tb, textb)
                 )
-        self.add_timestamp()
+        self.next_slide()
         self.play(Create(rectab),
                 Transform(tab, textab)
                 )
@@ -268,10 +237,10 @@ class BinomEins(Scene):
                 )
 
         #self.play(*[Write(x) for x in labels])
-        self.add_timestamp()
+        self.next_slide()
 
         self.play(*[FadeOut(b) for b in braces])
-        #self.add_timestamp()
+        #self.next_slide()
 
         # split rectangles
         self.play(bb.animate.shift(RIGHT + DOWN - globalshift),
@@ -297,27 +266,10 @@ class BinomEins(Scene):
                 Write(plus1),
                 Write(plus2)
                 )
-        self.add_timestamp()
-
-        write_data(self.meta_data)
 
 
-class BinomZwei(Scene):
-    meta_data = {
-        "title": "Second Binomial Formula",
-        "timestamps": [],
-        "filename": "BinomZwei.mp4",
-        "path": "videos/"
-    }
-
-    def draw_logo(self):
-        self.add(SVGMobject("stz-white.svg").scale_to_fit_width(0.3).to_corner(corner=RIGHT + DOWN))
-        
-    def add_timestamp(self):
-        self.meta_data["timestamps"].append(self.renderer.time)
-
+class BinomZwei(Slide):
     def construct(self):
-        self.draw_logo()
         # Parameters
         a, b = 4, 1.5
         # rectangles
@@ -407,24 +359,24 @@ class BinomZwei(Scene):
         self.play(Create(rc),
                 *[Create(b) for b in braces0]
                 )
-        self.add_timestamp()
+        self.next_slide()
         self.play(
                 *[Create(b) for b in braces1],
                 textrc.animate.shift((a/2+3*dist)*LEFT + (a/2)*UP)
                 )
-        self.add_timestamp()
+        self.next_slide()
         self.play(Create(squarea),
                 Transform(ta, texta)
                 )
-        self.add_timestamp()
+        self.next_slide()
         self.play(Create(rectab),
                 Transform(tab, textab)
                 )
-        self.add_timestamp()
+        self.next_slide()
         self.play(Create(rectba),
                 Transform(tba, textba)
                 )
-        self.add_timestamp()
+        self.next_slide()
         self.play(Create(squareb),
                 Transform(tb, textb)
                 )
@@ -433,7 +385,7 @@ class BinomZwei(Scene):
                 Transform(tba, MathTex("ab").shift(tba.get_center()))
                 )
 
-        self.add_timestamp()
+        self.next_slide()
 
         self.play(*[FadeOut(b) for b in braces])
         self.wait(supershort)
@@ -453,7 +405,7 @@ class BinomZwei(Scene):
         self.play(Transform(tab, MathTex("-ab").shift(tab.get_center())),
                 Transform(tba, MathTex("-ab").shift(tba.get_center()))
                 )
-        self.add_timestamp()
+        self.next_slide()
 
         # align them
         globalshift = (b-a)/2*LEFT
@@ -479,27 +431,10 @@ class BinomZwei(Scene):
                 Write(plus2),
                 Transform(tba, MathTex("2\cdot ab").shift(globalshift))
                 )
-        self.add_timestamp()
 
-        write_data(self.meta_data)
-        
 
-class BinomDrei(Scene):
-    meta_data = {
-        "title": "Third Binomial Formula",
-        "timestamps": [],
-        "filename": "BinomDrei.mp4",
-        "path": "videos/"
-    }
-
-    def draw_logo(self):
-        self.add(SVGMobject("stz-white.svg").scale_to_fit_width(0.3).to_corner(corner=RIGHT + DOWN))
-
-    def add_timestamp(self):
-        self.meta_data["timestamps"].append(self.renderer.time)
-
+class BinomDrei(Slide):
     def construct(self):
-        self.draw_logo()
         # Parameters
         a, b = 4, 1.5
         # rectangles
@@ -589,7 +524,7 @@ class BinomDrei(Scene):
         self.play(Create(rc),
                 *[Create(b) for b in braces0]
                 )
-        self.add_timestamp()
+        self.next_slide()
         self.play(
                 textrc.animate.shift((a+b)*LEFT + (a-b)*UP),
                 *[Create(b) for b in braces1]
@@ -597,24 +532,24 @@ class BinomDrei(Scene):
         self.play(Create(squarea),
                 Transform(ta, texta)
                 )
-        self.add_timestamp()
+        self.next_slide()
         self.play(Create(rectba),
                 Transform(tba, textba)
                 )
-        self.add_timestamp()
+        self.next_slide()
         self.play(Create(rectab),
                 Transform(tab, textab)
                 )
-        self.add_timestamp()
+        self.next_slide()
         self.play(Create(squareb),
                 Transform(tb, textb)
                 )
-        self.add_timestamp()
+        self.next_slide()
         self.play(FadeOut(rect_calc),
                 Transform(tba, MathTex("ab").shift(tba.get_center()))
                 )
 
-        self.add_timestamp()
+        self.next_slide()
 
         self.play(*[FadeOut(b) for b in braces])
         self.wait(supershort)
@@ -635,7 +570,7 @@ class BinomDrei(Scene):
                 Transform(tab, MathTex("-ab").shift(tab.get_center())),
                 Transform(tb, MathTex("-b^2").shift(tb.get_center()))
                 )
-        self.add_timestamp()
+        self.next_slide()
 
         # align them
         globalshift = (b-a)/2*LEFT
@@ -657,13 +592,11 @@ class BinomDrei(Scene):
         # text for equation
         gleich = MathTex("=").shift(3*(a+dist)/2*LEFT+globalshift)
         minus = MathTex("-").shift(globalshift)
-        self.add_timestamp()
+        self.next_slide()
         self.play(
                 #textrc.animate.shift(2*dist*RIGHT),
                 Write(gleich),
                 Write(minus),
                 Transform(tb, MathTex("b^2").shift(tb.get_center()))
                 )
-        self.add_timestamp()
 
-        write_data(self.meta_data)

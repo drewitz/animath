@@ -1,25 +1,13 @@
 from manim import *
+from manim_slides import Slide
 
-from modules.data_write import write_data
 
-class Potenz(Scene):
+
+class Potenz(Slide):
     """drawing an animation of the Newton method"""
-    meta_data = {
-        "title": "Potenzfunktionen",
-        "timestamps": [0],
-        "filename": "Potenz.mp4",
-        "path": "videos/"
-    }
-    def draw_logo(self):
-        self.add(SVGMobject("stz-white.svg").scale_to_fit_width(0.3).to_corner(corner=RIGHT + DOWN))
-    
     n_max = 9
 
-    def add_timestamp(self):
-        self.meta_data["timestamps"].append(self.renderer.time)
-
     def construct(self):
-        self.draw_logo()
         ax = Axes(
         ).add_coordinates()
         ax_labels = ax.get_axis_labels()
@@ -39,10 +27,10 @@ class Potenz(Scene):
             else:
                 graph = ax.plot(lambda x: x**n, color="blue")
                 self.play(FadeIn(graph), Transform(text, newtext))
-            self.add_timestamp()
+            self.next_slide()
 
         self.play(FadeOut(graph))
-        self.add_timestamp()
+        self.next_slide()
 
         graph = None
         for n in range(self.n_max):
@@ -57,6 +45,4 @@ class Potenz(Scene):
                 graph = VGroup(ax.plot(lambda x: x**(-n), x_range=[-6, -0.01], color="blue"),
                                ax.plot(lambda x: x**(-n), x_range=[0.01, 6], color="blue"))
                 self.play(FadeIn(graph), Transform(text, newtext))
-            self.add_timestamp()
 
-        write_data(self.meta_data)

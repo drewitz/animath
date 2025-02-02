@@ -1,7 +1,8 @@
 from manim import *
+from manim_slides import Slide
 import numpy as np
 
-from modules.data_write import write_data
+
 
 # PARAMETERS
 a = 2.5
@@ -15,22 +16,8 @@ colourcomp = "#FF726B"
 coloursec1 = "#5F7DC6"
 coloursec2 = "#FFCE6B"
 
-class Pythagoras1(Scene):
-    meta_data = {
-        "title": "Pythagoras1",
-        "timestamps": [0],
-        "filename": "Pythagoras1.mp4",
-        "path": "videos/"
-    }
-
-    def draw_logo(self):
-        self.add(SVGMobject("stz-white.svg").scale_to_fit_width(0.3).to_corner(corner=RIGHT + DOWN))
-
-    def add_timestamp(self):
-        self.meta_data["timestamps"].append(self.renderer.time)
-
+class Pythagoras1(Slide):
     def construct(self):
-        self.draw_logo()
         # Create first triangle and move it down
         triangle = Polygon([0, 0, 0],
                            [b, 0, 0],
@@ -43,7 +30,7 @@ class Pythagoras1(Scene):
         self.play(Create(triangle))
         self.play(FadeIn(text_a, text_b, text_c))
         self.play(tri_and_text.animate.shift((a+b)/2*(LEFT+DOWN)))
-        self.add_timestamp()
+        self.next_slide()
         # square over the hypotenuse
         csquare = Square(c, color=colourcomp, **common_kwargs).rotate(np.arctan(b/a))
         text_c2 = text_c.copy()
@@ -51,7 +38,7 @@ class Pythagoras1(Scene):
             Create(csquare),
             Transform(text_c2, MathTex("c^2"))
         )
-        self.add_timestamp()
+        self.next_slide()
         # triangles of the sides of the squares
         triangle2 = triangle.copy()
         self.play(triangle2.animate.rotate_about_origin(90*DEGREES))
@@ -68,7 +55,7 @@ class Pythagoras1(Scene):
             csquare,
             text_c2
         )
-        self.add_timestamp()
+        self.next_slide()
         # big square
         bigsquare = Square(a+b, color=coloursec1)
         self.play(FadeIn(bigsquare))
@@ -89,7 +76,7 @@ class Pythagoras1(Scene):
         self.play(FadeIn(text_leftdown, text_rightup, lag_ratio=1.1))
 
         #self.wait(2)
-        self.add_timestamp()
+        self.next_slide()
 
         # rearrange triangles, delete square
         self.play(
@@ -104,7 +91,7 @@ class Pythagoras1(Scene):
             rect.animate.shift([b, 0, 0])
         )
 
-        self.add_timestamp()
+        self.next_slide()
         # small squares
         asquare = Square(a, color=colourcomp, **common_kwargs).shift([b/2, -b/2, 0])
         bsquare = Square(b, color=colourcomp, **common_kwargs).shift([-a/2, a/2, 0])
@@ -119,7 +106,7 @@ class Pythagoras1(Scene):
             Transform(text_b2, MathTex("b^2").shift(bsquare.get_center()))
         )
         #
-        self.add_timestamp()
+        self.next_slide()
         div_two = VGroup(
             triangle,
             triangle2,
@@ -141,5 +128,3 @@ class Pythagoras1(Scene):
             ScaleInPlace(div_two, 0.7)
         )
 
-        self.add_timestamp()
-        write_data(self.meta_data)

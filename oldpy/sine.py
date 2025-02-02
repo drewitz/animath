@@ -1,7 +1,8 @@
 from manim import *
+from manim_slides import Slide
 import numpy as np
 
-from modules.data_write import write_data
+
 
 # PARAMETERS
 common_kwargs = {"fill_opacity": 0.5}
@@ -12,22 +13,8 @@ colourcomp = "#FF726B"
 coloursec1 = "#5F7DC6"
 coloursec2 = "#FFCE6B"
 
-class Sine(Scene):
-    meta_data = {
-        "title": "Sine",
-        "timestamps": [0],
-        "filename": "Sine.mp4",
-        "path": "videos/"
-    }
-
-    def draw_logo(self):
-        self.add(SVGMobject("stz-white.svg").scale_to_fit_width(0.3).to_corner(corner=RIGHT + DOWN))
-
-    def add_timestamp(self):
-        self.meta_data["timestamps"].append(self.renderer.time)
-
+class Sine(Slide):
     def construct(self):
-        # self.draw_logo()
         axmax = 1.7
         n = 8 # multiples of 90*DEGREES to plot
         ax1 = Axes(
@@ -124,9 +111,7 @@ class Sine(Scene):
         self.play(phi.animate.set_value(30*DEGREES))
         self.play(phi.animate.set_value(70*DEGREES))
         self.play(phi.animate.set_value(15*DEGREES))
-        self.add_timestamp()
+        self.next_slide()
         self.play(phi.animate.set_value(150*DEGREES), FadeOut(triangle), FadeIn(op), run_time=3)
         self.play(phi.animate.set_value(500*DEGREES), run_time=6)
 
-        self.add_timestamp()
-        write_data(self.meta_data)

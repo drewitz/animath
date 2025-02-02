@@ -1,25 +1,17 @@
 from manim import *
+from manim_slides import Slide
 import string
 
-from modules.data_write import write_data
 
 
-class Linear(Scene):
+
+class Linear(Slide):
     """drawing an animation of the Newton method"""
-    meta_data = {
-        "title": "Reflections of Linear Functions",
-        "timestamps": [0],
-        "filename": "Linear.mp4",
-        "path": "videos/"
-    }
     a = 0.4
     b = -1.5
     ex_points = [-3, 1, 5] # x coordinates of example points.
     points = []
     labels = []
-
-    def draw_logo(self):
-        self.add(SVGMobject("stz-white.svg").scale_to_fit_width(0.3).to_corner(corner=RIGHT + DOWN))
 
     def f(self, x):
         return self.a*x + self.b
@@ -39,7 +31,7 @@ class Linear(Scene):
             arrow.put_start_and_end_on(self.points[i].get_center(), pt.get_center())
             self.play(FadeIn(lbl), FadeIn(arrow), FadeToColor(pt, RED))
         
-        self.add_timestamp()
+        self.next_slide()
         graph = ax.plot(lambda x: self.f(-x), color=RED)
         dest.append(graph)
         self.play(FadeIn(graph))
@@ -60,7 +52,7 @@ class Linear(Scene):
             arrow.put_start_and_end_on(self.points[i].get_center(), pt.get_center())
             self.play(FadeIn(lbl), FadeIn(arrow), FadeToColor(pt, RED))
         
-        self.add_timestamp()
+        self.next_slide()
         graph = ax.plot(lambda x: -self.f(x), color=RED)
         dest.append(graph)
         self.play(FadeIn(graph))
@@ -82,18 +74,14 @@ class Linear(Scene):
             arrow.put_start_and_end_on(self.points[i].get_center(), pt.get_center())
             self.play(FadeIn(lbl), FadeIn(arrow), FadeToColor(pt, RED))
         
-        self.add_timestamp()
+        self.next_slide()
         graph = ax.plot(lambda x: -self.f(-x), color=RED)
         dest.append(graph)
         self.play(FadeIn(graph))
 
         return VGroup(*dest)
 
-    def add_timestamp(self):
-        self.meta_data["timestamps"].append(self.renderer.time)
-
     def construct(self):
-        self.draw_logo()
         ax = Axes(
             # y_range=[-3, 2.5, 1],
             # x_range=[-0.5, 2.5, 1]
@@ -104,7 +92,7 @@ class Linear(Scene):
         self.play(Create(ax), FadeIn(ax_labels))
         #self.play(Create(ax_labels))
         self.play(Create(graph))
-        self.add_timestamp()
+        self.next_slide()
 
         for i, x in enumerate(self.ex_points):
             pt = Dot(ax.coords_to_point(x, self.f(x)), color="green")
@@ -113,12 +101,10 @@ class Linear(Scene):
             self.labels.append(lbl)
             self.play(FadeIn(pt), Write(lbl))
         
-        self.add_timestamp()
+        self.next_slide()
         
         for func in [self.reflect_y, self.reflect_x, self.reflect_origin]:
             refl = func(ax)
-            self.add_timestamp()
+            self.next_slide()
             self.play(FadeOut(refl))
-        self.add_timestamp()
 
-        write_data(self.meta_data)

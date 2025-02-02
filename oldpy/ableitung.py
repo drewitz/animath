@@ -1,22 +1,15 @@
 from manim import *
+from manim_slides import Slide
 
-from modules.data_write import write_data
+
 
 colourmain = "#5AD86A"
 colourcomp = "#FF726B"
 coloursec1 = "#5F7DC6"
 coloursec2 = "#FFCE6B"
 
-class Ableitung(Scene):
+class Ableitung(Slide):
     """drawing an animation of the differential quotient"""
-    meta_data = {
-        "title": "Ableitung",
-        "timestamps": [0],
-        "filename": "Ableitung.mp4",
-        "path": "videos/"
-    }
-    def draw_logo(self):
-        self.add(SVGMobject("stz-white.svg").scale_to_fit_width(0.3).to_corner(corner=RIGHT + DOWN))
     x0 = 0.5
 
     def p(self, x):
@@ -32,15 +25,11 @@ class Ableitung(Scene):
     def plot_line(self, ax):
         return ax.plot(lambda x: self.p(self.x0) + (x-self.x0)*self.pprime(self.x0), color="green")
     
-    def add_timestamp(self):
-        self.meta_data["timestamps"].append(self.renderer.time)
-
     def new_x(self):
         x0 = self.xs[-1]
         return x0 - self.p(x0)/self.pprime(x0)
 
     def construct(self):
-        self.draw_logo()
         ax = Axes(
             y_range=[-0.5, 5.5, 1],
             x_range=[-0.5, 2.5, 1]
@@ -49,7 +38,7 @@ class Ableitung(Scene):
         graph = ax.plot(lambda x: self.p(x), x_range=[-2.5, 2.5], color="blue")
         self.play(Create(ax))
         self.play(Create(graph))
-        self.add_timestamp()
+        self.next_slide()
 
         h = ValueTracker(1.5)
         dotx = Dot(color=colourmain).move_to(ax.c2p(self.x0+h.get_value(), self.p(self.x0+h.get_value())))
@@ -79,16 +68,14 @@ class Ableitung(Scene):
         self.play(Create(dotx), FadeIn(labelx))
         self.play(Create(dotx0), FadeIn(labelx0))
         self.play(FadeIn(secant))
-        self.add_timestamp()
+        self.next_slide()
         self.play(h.animate.set_value(1))
-        self.add_timestamp()
+        self.next_slide()
         self.play(h.animate.set_value(0.5))
-        self.add_timestamp()
+        self.next_slide()
         self.play(h.animate.set_value(0.25))
-        self.add_timestamp()
+        self.next_slide()
         self.play(h.animate.set_value(0.025))
         grenzwert = self.plot_line(ax)
         self.play(Transform(secant, grenzwert), FadeOut(dotx), FadeOut(labelx))
 
-        self.add_timestamp()
-        write_data(self.meta_data)

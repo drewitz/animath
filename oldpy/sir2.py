@@ -5,13 +5,6 @@ from scipy.integrate import odeint
 
 tmax = 50
 
-meta_data = {
-    "title": "SIR Model 2",
-    "timestamps": [0, tmax],
-    "filename": "sir-model2.mp4",
-    "path": "videos/"
-}
-
 # s' = -a*s*i
 # i' = a*s*i - b*i
 # r' = b*i
@@ -89,4 +82,3 @@ slide_a2.on_changed(update)
 
 plt.show()
 
-print(f"docs/{meta_data['path']}{meta_data['filename']}")

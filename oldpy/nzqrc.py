@@ -1,7 +1,8 @@
 from manim import *
+from manim_slides import Slide
 import numpy as np
 
-from modules.data_write import write_data
+
 
 # PARAMETERS
 
@@ -20,15 +21,7 @@ colC = PURPLE
 common_kwargs = {"fill_opacity": 0.5}
 
 
-class Numbersets(Scene):
-    meta_data = {
-        "title": "Zahlenmengen",
-        "timestamps": [],
-        "filename": "Numbersets.mp4",
-        "path": "videos/"
-    }
-    def draw_logo(self):
-        self.add(SVGMobject("stz-white.svg").scale_to_fit_width(0.3).to_corner(corner=RIGHT + DOWN))
+class Numbersets(Slide):
     # SCENE
     # global parameters of the thing
     nmax = 5
@@ -156,11 +149,7 @@ class Numbersets(Scene):
         self.play(real.animate.set_value(1))
         self.play(imag.animate.set_value(1))
 
-    def add_timestamp(self):
-        self.meta_data["timestamps"].append(self.renderer.time)
-
     def construct(self):
-        self.draw_logo()
         # Text
         self.textN = Tex(r"$\mathbb{N}$", color=colN)
         self.textZ = Tex(r"$\subset \mathbb{Z}$", color=colZ).next_to(
@@ -179,18 +168,16 @@ class Numbersets(Scene):
         # Animation
         self.appearN()
         self.play(FadeIn(self.textN))
-        self.add_timestamp()
+        self.next_slide()
 
         self.appearZ()
-        self.add_timestamp()
+        self.next_slide()
 
         self.appearQ()
         # self.wait(supershort)
 
         self.play(FadeOut(VGroup(self.dotsN, self.dotsZ, *self.dotsQ)))
-        self.add_timestamp()
+        self.next_slide()
 
         self.appearR()
-        self.add_timestamp()
-        
-        write_data(self.meta_data)
+
