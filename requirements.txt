@@ -1,4 +1,6 @@
 manim
+manim-slides
+pyside6
 numpy
 matplotlib
 scipy
