@@ -3,19 +3,18 @@ from manim_slides import Slide
 import string
 
 
-
-
 class Linear(Slide):
     """drawing an animation of the Newton method"""
+
     a = 0.4
     b = -1.5
-    ex_points = [-3, 1, 5] # x coordinates of example points.
+    ex_points = [-3, 1, 5]  # x coordinates of example points.
     points = []
     labels = []
 
     def f(self, x):
-        return self.a*x + self.b
-    
+        return self.a * x + self.b
+
     def reflect_y(self, ax):
         # reflect along y-axis
         dest = []
@@ -26,11 +25,13 @@ class Linear(Slide):
             self.play(pt.animate.move_to(ax.coords_to_point(-x, self.f(x))))
             lbl = MathTex(string.ascii_uppercase[i] + "'", color="red").next_to(pt)
             dest.append(lbl)
-            arrow = Arrow(stroke_width=2, max_tip_length_to_length_ratio=0.1, color="yellow")
+            arrow = Arrow(
+                stroke_width=2, max_tip_length_to_length_ratio=0.1, color="yellow"
+            )
             dest.append(arrow)
             arrow.put_start_and_end_on(self.points[i].get_center(), pt.get_center())
             self.play(FadeIn(lbl), FadeIn(arrow), FadeToColor(pt, RED))
-        
+
         self.next_slide()
         graph = ax.plot(lambda x: self.f(-x), color=RED)
         dest.append(graph)
@@ -47,16 +48,18 @@ class Linear(Slide):
             self.play(pt.animate.move_to(ax.coords_to_point(x, -self.f(x))))
             lbl = MathTex(string.ascii_uppercase[i] + "'", color="red").next_to(pt)
             dest.append(lbl)
-            arrow = Arrow(stroke_width=2, max_tip_length_to_length_ratio=0.1, color="yellow")
+            arrow = Arrow(
+                stroke_width=2, max_tip_length_to_length_ratio=0.1, color="yellow"
+            )
             dest.append(arrow)
             arrow.put_start_and_end_on(self.points[i].get_center(), pt.get_center())
             self.play(FadeIn(lbl), FadeIn(arrow), FadeToColor(pt, RED))
-        
+
         self.next_slide()
         graph = ax.plot(lambda x: -self.f(x), color=RED)
         dest.append(graph)
         self.play(FadeIn(graph))
-        
+
         return VGroup(*dest)
 
     def reflect_origin(self, ax):
@@ -69,11 +72,13 @@ class Linear(Slide):
             self.play(pt.animate.move_to(ax.coords_to_point(-x, -self.f(x))))
             lbl = MathTex(string.ascii_uppercase[i] + "'", color="red").next_to(pt)
             dest.append(lbl)
-            arrow = Arrow(stroke_width=2, max_tip_length_to_length_ratio=0.1, color="yellow")
+            arrow = Arrow(
+                stroke_width=2, max_tip_length_to_length_ratio=0.1, color="yellow"
+            )
             dest.append(arrow)
             arrow.put_start_and_end_on(self.points[i].get_center(), pt.get_center())
             self.play(FadeIn(lbl), FadeIn(arrow), FadeToColor(pt, RED))
-        
+
         self.next_slide()
         graph = ax.plot(lambda x: -self.f(-x), color=RED)
         dest.append(graph)
@@ -90,7 +95,7 @@ class Linear(Slide):
 
         graph = ax.plot(lambda x: self.f(x), color="blue")
         self.play(Create(ax), FadeIn(ax_labels))
-        #self.play(Create(ax_labels))
+        # self.play(Create(ax_labels))
         self.play(Create(graph))
         self.next_slide()
 
@@ -100,11 +105,10 @@ class Linear(Slide):
             self.points.append(pt)
             self.labels.append(lbl)
             self.play(FadeIn(pt), Write(lbl))
-        
+
         self.next_slide()
-        
+
         for func in [self.reflect_y, self.reflect_x, self.reflect_origin]:
             refl = func(ax)
             self.next_slide()
             self.play(FadeOut(refl))
-

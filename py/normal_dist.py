@@ -31,7 +31,9 @@ class BinomialDist(Slide):
         }
         ns = [10, 20, 30, 40, 50, 60]
         for n, histcol in zip(ns, [RED, PURPLE, BLUE, GREEN, YELLOW, ORANGE]):
-            newhist = self.get_histogram(n, bar_colors=[histcol], **kwargs, **axes_config)
+            newhist = self.get_histogram(
+                n, bar_colors=[histcol], **kwargs, **axes_config
+            )
             self.play(FadeIn(newhist))
             hists.add(newhist)
             self.next_slide()
