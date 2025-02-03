@@ -15,5 +15,5 @@
     {"source_file": "pythagoras1.py", "slides_name": "Pythagoras1"},
     {"source_file": "pythagoras2.py", "slides_name": "Pythagoras2"},
     {"source_file": "sine.py", "slides_name": "Sine"},
-    {"source_file": "square-completion.py", "slides_name": "SquareCompletion"},
+    {"source_file": "square-completion.py", "slides_name": "SquareCompletion"}
 ]
