@@ -33,14 +33,14 @@ class Teich(Slide):
         for x in range(self.step_num):
             newrose = rose.copy()
             self.add(newrose)
-            self.play(newrose.animate.shift(self.height * UP))
+            self.play(newrose.animate.shift(self.height * UP), rate_func=linear)
             daynum.set_value(2 * x + 1)
             self.height *= 2
             rose = VGroup(rose, newrose)
             self.next_slide()
             newrose = rose.copy()
             self.add(newrose)
-            self.play(newrose.animate.shift(self.width * RIGHT))
+            self.play(newrose.animate.shift(self.width * RIGHT), rate_func=linear)
             daynum.set_value(2 * x + 2)
             self.width *= 2
             rose = VGroup(rose, newrose)
