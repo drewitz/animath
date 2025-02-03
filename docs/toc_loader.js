@@ -16,7 +16,7 @@ function load_video(n){
   // n specifies the index in the vid_data.
   current_video = n;
   video.src = vid_data[n].path + vid_data[n].filename;
-  video.contentWindow.location.reload();
+  //video.contentWindow.location.reload();
   title.innerHTML = vid_data[n].title;
 }
 
