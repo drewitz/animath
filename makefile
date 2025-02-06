@@ -32,6 +32,9 @@ Teich.html: py/exp.py
 Kathetensatz.html: py/kathetensatz.py
 	manim-slides render py/kathetensatz.py Kathetensatz
 	manim-slides convert -ccontrols=true Kathetensatz docs/frames/Kathetensatz.html
+LGS.html: py/lgs.py
+	manim-slides render py/lgs.py LGS
+	manim-slides convert -ccontrols=true LGS docs/frames/LGS.html
 Linear.html: py/linear.py
 	manim-slides render py/linear.py Linear
 	manim-slides convert -ccontrols=true Linear docs/frames/Linear.html
