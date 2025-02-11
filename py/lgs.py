@@ -24,12 +24,15 @@ class LGS(Slide):
         both_og_eqns = MathTex(f"{a1}\,x + {b1}\,y & = {c1} \\\\", f"{a2}\,x + {b2}\,y & = {c2}", tex_to_color_map=t2c)
         eqn1 = MathTex(f"{a1}\,x + {b1}\,y & = {c1}", tex_to_color_map=t2c)
         # eqn1b = MathTex(f"y = -\\frac{{ {a1} }}{{ {b1 } }}\,x + \\frac{{ {c1} }}{{ {b1 } }}", tex_to_color_map=t2c)
+        eqn1step = MathTex(f"{b1}\,y=-{a1}\,x + {c1}", tex_to_color_map=t2c)
         eqn1b = MathTex(f"y = -{a1/b1}\,x + {c1/b1}", tex_to_color_map=t2c)
         self.play(Write(both_og_eqns))
         self.next_slide()
         self.play(TransformMatchingTex(both_og_eqns, eqn1))
         self.next_slide()
-        self.play(TransformMatchingTex(eqn1, eqn1b, path_arc=PI/2))
+        self.play(TransformMatchingTex(eqn1, eqn1step, path_arc=PI/2))
+        self.next_slide()
+        self.play(TransformMatchingTex(eqn1step, eqn1b, path_arc=PI/2))
         self.next_slide()
         # move equation to the right and create graph
         xmin, xmax = 0, 5
@@ -57,9 +60,12 @@ class LGS(Slide):
         )
         self.next_slide()
         self.play(FadeIn(pt1), ReplacementTransform(eqn1b, eqn1xyreplaced))
-        self.play(x.animate.set_value(3))
-        self.play(x.animate.set_value(1))
-        self.play(x.animate.set_value(3.5))
+        self.next_slide()
+        self.play(x.animate.set_value(3), run_time=5)
+        self.wait(2)
+        self.play(x.animate.set_value(1), run_time=5)
+        self.wait(2)
+        self.play(x.animate.set_value(3.5), run_time=5)
         self.next_slide()
         # second equation
         g = lambda x: -x*a2/b2 + c2/b2
@@ -94,5 +100,6 @@ class LGS(Slide):
         intersection_x = (c1/b1 - c2/b2)/(a1/b1 - a2/b2)
         self.play(x.animate.set_value(intersection_x), run_time=3)
 
-        self.wait(5)
+        solution = MathTex(f"L = \\left\\{{ ( 0.8 \\mid 1.4 ) \\right\\}}").next_to(both_eqns, DOWN, buff=1)
+        self.play(Write(solution))
 
