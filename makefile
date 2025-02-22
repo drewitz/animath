@@ -26,6 +26,9 @@ BinomZwei.html: py/binom.py
 BinomDrei.html: py/binom.py
 	manim-slides render py/binom.py BinomDrei
 	manim-slides convert -ccontrols=true BinomDrei docs/frames/BinomDrei.html
+DistanzEbenePunkt.html: py/distanz_ebene_punkt.py
+	manim-slides render py/distanz_ebene_punkt.py DistanzEbenePunkt
+	manim-slides convert -ccontrols=true DistanzEbenePunkt docs/frames/DistanzEbenePunkt.html
 Teich.html: py/exp.py
 	manim-slides render py/exp.py Teich
 	manim-slides convert -ccontrols=true Teich docs/frames/Teich.html
