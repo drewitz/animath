@@ -11,6 +11,9 @@ NormalDist.html: py/normal_dist.py
 	manim-slides convert -ccontrols=true BinomialDist docs/frames/BinomialDist.html
 
 
+AbleitungMitH.html: py/ableitung.py
+	manim-slides render py/ableitung.py AbleitungMitH
+	manim-slides convert -ccontrols=true AbleitungMitH docs/frames/AbleitungMitH.html
 Ableitung.html: py/ableitung.py
 	manim-slides render py/ableitung.py Ableitung
 	manim-slides convert -ccontrols=true Ableitung docs/frames/Ableitung.html
