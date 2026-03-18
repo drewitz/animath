@@ -1,4 +1,8 @@
+# project related files
 media
 __pycache__
 data.json
 slides
+
+# vim files
+*~
